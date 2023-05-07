@@ -206,7 +206,7 @@ function Postgres(a, b) {
     !fn && (fn = options, options = '')
     if (typeof options === 'string') options = { beginOptions: options }
     !options.beginOptions && (options.beginOptions = '')
-    
+
     const queries = Queue()
     let savepoints = 0
       , connection
