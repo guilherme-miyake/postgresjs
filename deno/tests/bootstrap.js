@@ -8,6 +8,9 @@ await exec('psql', ['-c', 'create user postgres_js_test_md5 with password \'post
 await exec('psql', ['-c', 'alter system set password_encryption=\'scram-sha-256\''])
 await exec('psql', ['-c', 'select pg_reload_conf()'])
 await exec('psql', ['-c', 'create user postgres_js_test_scram with password \'postgres_js_test_scram\''])
+await exec('psql', ['-c', 'create role postgres_js_test_set_role noinherit'])
+await exec('psql', ['-c', 'grant postgres_js_test_set_role TO postgres_js_test'])
+
 
 await exec('dropdb', ['postgres_js_test'])
 await exec('createdb', ['postgres_js_test'])
