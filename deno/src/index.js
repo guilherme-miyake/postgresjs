@@ -208,9 +208,11 @@ function Postgres(a, b) {
     const queries = Queue()
     let savepoints = 0
       , connection
+    if (typeof options === 'string') options = { beginOptions: options }
 
     try {
-      await sql.unsafe('begin ' + options.replace(/[^a-z ]/ig, ''), [], { onexecute }).execute()
+      await sql.unsafe('begin ' + options.beginOptions.replace(/[^a-z ]/ig, ''), [], { onexecute }).execute()
+      options.role && await sql`SET ROLE ${options.role};`
       return await scope(connection, fn)
     } catch (error) {
       throw error
