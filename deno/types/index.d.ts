@@ -639,7 +639,7 @@ declare namespace postgres {
   | SerializableParameter<T>
   | Fragment
 
-  type BeginOptions = string | { beginOptions: string, role?: string }
+  type BeginOptions = string | { beginOptions?: string, role?: string }
 
   interface Sql<TTypes extends Record<string, unknown> = {}> {
     /**
