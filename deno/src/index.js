@@ -214,7 +214,7 @@ function Postgres(a, b) {
 
     try {
       await sql.unsafe('begin ' + options.beginOptions.replace(/[^a-z ]/ig, ''), [], { onexecute }).execute()
-      options.role && await sql`SET ROLE ${options.role};`
+      options.role && await sql`SET ROLE ${sql(options.role)};`
       return await scope(connection, fn)
     } catch (error) {
       throw error
